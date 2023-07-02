@@ -49,4 +49,28 @@ class HttpConnections {
       throw Exception("failed to load posts $id");
     }
   }
+
+  Future<Post> updatePost(int postid, String title, String body) async {
+    Map mybody = {
+      'title': title,
+      'body': body,
+    };
+    Response response = await client.put(
+      Uri.parse(
+        baseUrl + postEndPoint + "/$postid",
+      ),
+      body: jsonEncode(
+        mybody,
+      ),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    if (response.statusCode == 200) {
+      Post _post = Post.fromJson(jsonDecode(response.body));
+      return _post;
+    } else {
+      throw Exception("failed to update posts");
+    }
+  }
 }

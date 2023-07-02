@@ -88,8 +88,12 @@ class _HomePageState extends State<HomePage> {
                   child: Text('Post'),
                 ),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    Post post =
+                        await _httpConnections.updatePost(1, "hello", "zeyad");
                     setState(() {
+                      bodyPost = post.body;
+                      titlePost = post.title;
                       titleMethod = 'update';
                     });
                   },
