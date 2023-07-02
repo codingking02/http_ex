@@ -18,6 +18,7 @@ class HttpConnections {
         mybody,
       ),
     );
+    print(response.body);
 
     if (response.statusCode == 201) {
       Map<String, dynamic> _map = jsonDecode(response.body);
