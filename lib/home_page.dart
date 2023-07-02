@@ -77,7 +77,6 @@ class _HomePageState extends State<HomePage> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    Post post = await _httpConnections.fetchPost(1);
                     setState(() async {
                       Post post = await _httpConnections.createPost(
                           "mytitle", "mypost body");
