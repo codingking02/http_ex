@@ -8,6 +8,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String titleMethod = "Get";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,23 +21,46 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Text(
+              titleMethod,
+              style: TextStyle(fontSize: 30),
+            ),
+            SizedBox(
+              height: 20,
+            ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      titleMethod = 'Get';
+                    });
+                  },
                   child: Text('Get'),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      titleMethod = 'Post';
+                    });
+                  },
                   child: Text('Post'),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      titleMethod = 'update';
+                    });
+                  },
                   child: Text('Update'),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      titleMethod = 'delete';
+                    });
+                  },
                   child: Text('Delete'),
                 ),
               ],
