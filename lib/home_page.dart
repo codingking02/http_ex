@@ -76,11 +76,13 @@ class _HomePageState extends State<HomePage> {
                   child: Text('Get'),
                 ),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    Post post = await _httpConnections.createPost(
+                        "mytitle", "mypost body");
                     setState(() {
-                      Future<Post> post =
-                          _httpConnections.createPost("mytitle", "mypost body");
                       titleMethod = 'Post';
+                      bodyPost = post.body;
+                      titlePost = post.title;
                     });
                   },
                   child: Text('Post'),
