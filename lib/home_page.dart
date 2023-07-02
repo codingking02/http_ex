@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http_ex/model/post_model.dart';
+import 'package:http_ex/network/http_connection.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -8,7 +10,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String titleMethod = "Get";
+  String titleMethod = "Choose Method";
+  String titlePost = "";
+  String bodyPost = "";
+  final HttpConnections _httpConnections = HttpConnections();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,16 +28,28 @@ class _HomePageState extends State<HomePage> {
           children: [
             Text(
               titleMethod,
-              style: TextStyle(fontSize: 30),
+              style: TextStyle(fontSize: 25),
             ),
             SizedBox(
               height: 20,
+            ),
+            Text(
+              titlePost,
+              style: TextStyle(fontSize: 15),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              bodyPost,
+              style: TextStyle(fontSize: 15),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    Post post = await _httpConnections.fetchPost(1);
                     setState(() {
                       titleMethod = 'Get';
                     });
@@ -40,8 +57,11 @@ class _HomePageState extends State<HomePage> {
                   child: Text('Get'),
                 ),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    Post post = await _httpConnections.fetchPost(1);
                     setState(() {
+                      bodyPost = post.body;
+                      titlePost = post.title;
                       titleMethod = 'Post';
                     });
                   },
