@@ -8,6 +8,28 @@ class HttpConnections {
   static String postEndPoint = "posts";
   final client = varHttp.Client();
 
+  Future<Post> createPost(String title, String body) async {
+    Map mybody = {'title': title, 'body': body};
+    Response response = await client.post(
+      Uri.parse(
+        baseUrl + postEndPoint,
+      ),
+      body: jsonEncode(
+        mybody,
+      ),
+    );
+
+    if (response.statusCode == 201) {
+      Map<String, dynamic> _map = jsonDecode(response.body);
+      Post _post = Post.fromJson(
+        _map,
+      );
+      return _post;
+    } else {
+      throw Exception("failed to create posts ");
+    }
+  }
+
   Future<Post> fetchPost(int id) async {
     Response response = await client.get(
       Uri.parse(baseUrl + postEndPoint + '/$id'),

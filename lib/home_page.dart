@@ -34,8 +34,22 @@ class _HomePageState extends State<HomePage> {
               height: 20,
             ),
             Text(
+              "Title : ",
+              style: TextStyle(fontSize: 25),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
               titlePost,
               style: TextStyle(fontSize: 15),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              "Body : ",
+              style: TextStyle(fontSize: 25),
             ),
             SizedBox(
               height: 20,
@@ -44,6 +58,9 @@ class _HomePageState extends State<HomePage> {
               bodyPost,
               style: TextStyle(fontSize: 15),
             ),
+            SizedBox(
+              height: 20,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -51,6 +68,8 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () async {
                     Post post = await _httpConnections.fetchPost(1);
                     setState(() {
+                      bodyPost = post.body;
+                      titlePost = post.title;
                       titleMethod = 'Get';
                     });
                   },
@@ -59,9 +78,9 @@ class _HomePageState extends State<HomePage> {
                 ElevatedButton(
                   onPressed: () async {
                     Post post = await _httpConnections.fetchPost(1);
-                    setState(() {
-                      bodyPost = post.body;
-                      titlePost = post.title;
+                    setState(() async {
+                      Post post = await _httpConnections.createPost(
+                          "mytitle", "mypost body");
                       titleMethod = 'Post';
                     });
                   },
