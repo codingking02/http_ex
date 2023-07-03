@@ -117,6 +117,13 @@ class _MyViewState extends State<MyView> {
                 ),
               ],
             ),
+            SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              child: Text("show all posts"),
+            ),
           ],
         ),
       ),

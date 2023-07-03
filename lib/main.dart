@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:http_ex/home_page.dart';
 import 'package:http_ex/http_test/view.dart';
 //https://jsonplaceholder.typicode.com
 
@@ -14,6 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      ),
       home: MyView(),
     );
   }

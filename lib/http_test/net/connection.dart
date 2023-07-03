@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_ex/http_test/model/mypost.dart';
@@ -75,6 +74,19 @@ class Connection {
       return myPost;
     } else {
       throw Exception("failed to delete");
+    }
+  }
+
+  Future<List<MyPost>> getAllPosts() async {
+    Response response = await client.get(
+      Uri.parse(URLbase + EndPoint),
+    );
+    if (response.statusCode == 200) {
+      List<dynamic> bodylist = jsonDecode(response.body);
+      List<MyPost> myposts = bodylist.map((e) => MyPost.fromJson(e)).toList();
+      return myposts;
+    } else {
+      return [];
     }
   }
 }
