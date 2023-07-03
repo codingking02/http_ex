@@ -73,4 +73,18 @@ class HttpConnections {
       throw Exception("failed to update posts");
     }
   }
+
+  Future<Post> deletePost(int id) async {
+    Response response = await client.delete(
+      Uri.parse(
+        baseUrl + postEndPoint + '/$id',
+      ),
+    );
+    if (response.statusCode == 200) {
+      Post _post = Post.fromJson({});
+      return _post;
+    } else {
+      throw Exception('failed to delete');
+    }
+  }
 }

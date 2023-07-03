@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http_ex/home_page.dart';
+import 'package:http_ex/http_test/view.dart';
 //https://jsonplaceholder.typicode.com
 
 void main() {
@@ -13,8 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: true),
-      home: HomePage(),
+      home: MyView(),
     );
   }
 }

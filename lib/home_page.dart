@@ -100,8 +100,11 @@ class _HomePageState extends State<HomePage> {
                   child: Text('Update'),
                 ),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    Post post = await _httpConnections.deletePost(1);
                     setState(() {
+                      bodyPost = post.body;
+                      titlePost = post.title;
                       titleMethod = 'delete';
                     });
                   },
