@@ -44,7 +44,7 @@ class _MyViewState extends State<MyView> {
             ),
             Text(
               TitleBody,
-              style: mystyle,
+              style: mysecstyle,
             ),
             SizedBox(
               height: 20,
@@ -58,7 +58,7 @@ class _MyViewState extends State<MyView> {
             ),
             Text(
               mybody,
-              style: mystyle,
+              style: mysecstyle,
             ),
             SizedBox(
               height: 20,
@@ -79,24 +79,37 @@ class _MyViewState extends State<MyView> {
                   child: Text("Get"),
                 ),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    MyPost myPost = await connection.CreatePost(
+                      "my title",
+                      "my body",
+                    );
                     setState(() {
+                      TitleBody = myPost.title;
+                      mybody = myPost.body;
                       MethodTitle = "Post";
                     });
                   },
                   child: Text("Post"),
                 ),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    MyPost mypost =
+                        await connection.UpdatePost(1, "hello", "zeyad");
                     setState(() {
+                      TitleBody = mypost.title;
+                      mybody = mypost.body;
                       MethodTitle = "Put";
                     });
                   },
                   child: Text("Put"),
                 ),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    MyPost myPost = await connection.DeletePost(1);
                     setState(() {
+                      TitleBody = myPost.title;
+                      mybody = myPost.body;
                       MethodTitle = "Delete";
                     });
                   },
