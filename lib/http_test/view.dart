@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http_ex/http_test/allposts.dart';
 import 'package:http_ex/http_test/model/mypost.dart';
 import 'package:http_ex/http_test/net/connection.dart';
 
@@ -121,7 +122,16 @@ class _MyViewState extends State<MyView> {
               height: 20,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return PostsList();
+                    },
+                  ),
+                );
+              },
               child: Text("show all posts"),
             ),
           ],

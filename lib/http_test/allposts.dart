@@ -20,19 +20,31 @@ class _PostsListState extends State<PostsList> {
         future: Connection().getAllPosts(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
+            return Center(
+              child: const CircularProgressIndicator(),
+            );
           } else if (snapshot.hasData) {
-            return ListView.builder(
+            return ListView.separated(
+              separatorBuilder: (context, index) {
+                return Divider(
+                  color: Colors.blue,
+                  height: 10,
+                  thickness: 10,
+                );
+              },
+              padding: const EdgeInsets.all(20),
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(snapshot.data![index].title),
-                  subtitle: Text(snapshot.data![index].body),
+                  title: Text('Title : ${snapshot.data![index].title}'),
+                  subtitle: Text('Body :  ${snapshot.data![index].body}'),
                 );
               },
             );
           } else {
-            throw Exception("no list created");
+            return Center(
+              child: const Text("No Data"),
+            );
           }
         },
       ),
