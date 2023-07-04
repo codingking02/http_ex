@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http_ex/http_test/allposts.dart';
+import 'package:http_ex/http_test/view/allposts.dart';
 import 'package:http_ex/http_test/model/mypost.dart';
 import 'package:http_ex/http_test/net/connection.dart';
 
