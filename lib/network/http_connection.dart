@@ -87,4 +87,17 @@ class HttpConnections {
       throw Exception('failed to delete');
     }
   }
+
+  Future<List<Post>> getAllPosts() async {
+    Response response = await client.get(
+      Uri.parse(baseUrl + postEndPoint),
+    );
+    if (response.statusCode == 200) {
+      List<dynamic> bodylist = jsonDecode(response.body);
+      List<Post> myposts = bodylist.map((e) => Post.fromJson(e)).toList();
+      return myposts;
+    } else {
+      return [];
+    }
+  }
 }

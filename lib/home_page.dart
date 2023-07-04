@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http_ex/model/post_model.dart';
 import 'package:http_ex/network/http_connection.dart';
+import 'package:http_ex/myallposts';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -111,6 +112,22 @@ class _HomePageState extends State<HomePage> {
                   child: Text('Delete'),
                 ),
               ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return AllPosts();
+                    },
+                  ),
+                );
+              },
+              child: Text("show all posts"),
             ),
           ],
         ),
