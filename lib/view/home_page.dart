@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http_ex/model/post_model.dart';
 import 'package:http_ex/network/http_connection.dart';
-import 'package:http_ex/myallposts';
+import './myallposts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
