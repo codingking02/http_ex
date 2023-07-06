@@ -11,6 +11,6 @@ class DioConnection {
     ),
   );
   getData(int id) {
-    dio.get('posts' + '/$id');
+    dio.get(EndPoint);
   }
 }
