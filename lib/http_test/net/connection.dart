@@ -33,10 +33,11 @@ class Connection {
         mybody,
       ),
     );
-    print(response.body);
+
     if (response.statusCode == 201) {
       Map<String, dynamic> mp = jsonDecode(response.body);
       MyPost _mypost = MyPost.fromJson(mp);
+      print(response.body);
       return _mypost;
     } else {
       throw Exception("failed to create post");

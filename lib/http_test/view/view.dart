@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http_ex/http_test/dio/dio_connection.dart';
 import 'package:http_ex/http_test/view/allposts.dart';
 import 'package:http_ex/http_test/model/mypost.dart';
 import 'package:http_ex/http_test/net/connection.dart';
@@ -11,7 +12,14 @@ class MyView extends StatefulWidget {
 }
 
 class _MyViewState extends State<MyView> {
-  Connection connection = Connection();
+  @override
+  void initState() {
+    super.initState();
+    dioconnection.dio;
+  }
+
+  final dioconnection = DioConnection();
+  final connection = Connection();
   String MethodTitle = "Get";
   String TitleBody = "";
   String mybody = "";
@@ -70,10 +78,11 @@ class _MyViewState extends State<MyView> {
               children: [
                 ElevatedButton(
                   onPressed: () async {
-                    MyPost myPost = await connection.FetchPost(1);
+                    MyPost? myPost = await dioconnection.getPostData(1);
+                    //MyPost myPost = await connection.FetchPost(1);
                     setState(() {
-                      TitleBody = myPost.title;
-                      mybody = myPost.body;
+                      TitleBody = myPost!.title;
+                      mybody = myPost!.body;
                       MethodTitle = "Get";
                     });
                   },
@@ -81,13 +90,13 @@ class _MyViewState extends State<MyView> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    MyPost myPost = await connection.CreatePost(
-                      "my title",
-                      "my body",
-                    );
+                    //MyPost myPost =
+                    //await connection.CreatePost("my title", "my body");
+                    MyPost? post =
+                        await dioconnection.createPost("my title", "my body");
                     setState(() {
-                      TitleBody = myPost.title;
-                      mybody = myPost.body;
+                      TitleBody = post!.title;
+                      mybody = post!.body;
                       MethodTitle = "Post";
                     });
                   },
@@ -95,11 +104,13 @@ class _MyViewState extends State<MyView> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    MyPost mypost =
-                        await connection.UpdatePost(1, "hello", "zeyad");
+                    //MyPost mypost =
+                    //   await connection.UpdatePost(1, "hello", "zeyad");
+                    MyPost? myPost =
+                        await dioconnection.updatePost("hello", "zeyad", 1);
                     setState(() {
-                      TitleBody = mypost.title;
-                      mybody = mypost.body;
+                      TitleBody = myPost!.title;
+                      mybody = myPost!.body;
                       MethodTitle = "Put";
                     });
                   },

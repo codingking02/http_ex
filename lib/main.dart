@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http_ex/http_test/view/view.dart';
+
 //https://jsonplaceholder.typicode.com
 
 void main() {
