@@ -118,7 +118,8 @@ class _MyViewState extends State<MyView> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    MyPost myPost = await connection.DeletePost(1);
+                    //MyPost myPost = await connection.DeletePost(1);
+                    MyPost myPost = await dioconnection.deletePost(1);
                     setState(() {
                       TitleBody = myPost.title;
                       mybody = myPost.body;

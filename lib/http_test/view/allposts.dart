@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http_ex/http_test/net/connection.dart';
+import 'package:http_ex/http_test/dio/dio_connection.dart';
 
 class PostsList extends StatefulWidget {
   const PostsList({super.key});
@@ -17,7 +17,7 @@ class _PostsListState extends State<PostsList> {
         centerTitle: true,
       ),
       body: FutureBuilder(
-        future: Connection().getAllPosts(),
+        future: DioConnection().getAllPosts(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(

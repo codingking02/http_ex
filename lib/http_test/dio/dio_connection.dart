@@ -49,11 +49,35 @@ class DioConnection {
     Map<String, dynamic> map = {"title": title, "body": body};
     Response response = await dio.put(EndPoint + "/$id", data: jsonEncode(map));
     if (response.statusCode == 200) {
-      Map<String, dynamic> mymap = jsonDecode(response.data);
+      Map<String, dynamic> mymap = response.data;
       MyPost myPost = MyPost.fromJson(mymap);
+      print(response.data);
       return myPost;
     } else {
       throw Exception("failed to update post");
+    }
+  }
+
+  Future<MyPost> deletePost(int id) async {
+    Response response = await dio.delete(EndPoint + "/$id");
+    if (response.statusCode == 200) {
+      Map<String, dynamic> mymap = {};
+      MyPost myPost = MyPost.fromJson(mymap);
+      print(response.data);
+      return myPost;
+    } else {
+      throw Exception("failed to delete post");
+    }
+  }
+
+  Future<List<MyPost>> getAllPosts() async {
+    Response response = await dio.get(EndPoint);
+    if (response.statusCode == 200) {
+      List<dynamic> myposts = response.data;
+      List<MyPost> allposts = myposts.map((e) => MyPost.fromJson(e)).toList();
+      return allposts;
+    } else {
+      throw Exception("failed to get all posts");
     }
   }
 }
